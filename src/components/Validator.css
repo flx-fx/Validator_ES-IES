@@ -1,0 +1,46 @@
+.Card {
+    color: #303740;
+    background-color: #FFFFFF;
+    border: 1px solid #DAE2ED;
+    border-radius: 12px;
+    box-shadow: rgba(218, 226, 237, 0.6) 0 4px 8px;
+    margin-bottom: 8px;
+    padding: 12px;
+}
+
+input {
+    background-color: #FFFFFF;
+    border: 1px solid #DAE2ED;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px #F3F6F9;
+    color: #1C2025;
+    font-size: 0.875rem;
+    margin: 4px;
+    padding: 12px;
+    width: 25%;
+
+    &:hover {
+        border-color: #FF7043;
+    }
+
+    &:focus {
+        border-color: #FF7043;
+        box-shadow: 0 0 0 3px #FFAB91;
+    }
+
+    &:focus-visible {
+        outline: 0;
+    }
+}
+
+.GridContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: 4px auto 4px auto;
+    width: 75%;
+}
+
+.Result {
+    transition: all 0.4s;
+}
