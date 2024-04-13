@@ -1,13 +1,12 @@
-import PropTypes from "prop-types";
+import PropTypes, {number} from "prop-types";
 
-export default function ResultMessage({ sum1, sum2 }) {
+export default function ResultMessage({ sum1, sum2, range }) {
 
     ResultMessage.propTypes = {
         sum1: PropTypes.number.isRequired,
         sum2: PropTypes.number.isRequired,
     };
 
-    let range = 0.1;
     let message;
     let color;
     let borderColor;
@@ -19,7 +18,7 @@ export default function ResultMessage({ sum1, sum2 }) {
         borderColor = '#A5D6A7';
         bgColor = '#E8F5E9';
     } else if (isNaN(sum1) || isNaN(sum2)) {
-        message = "Noch keine Werte Eingetragen!";
+        message = 'Noch keine/nicht alle Werte Eingetragen!';
         color = '#303740';
         borderColor = '#DAE2ED';
         bgColor = '#FFFFFF';
@@ -34,5 +33,9 @@ export default function ResultMessage({ sum1, sum2 }) {
         <div className='Card Result' style={{color: color, borderColor: borderColor, backgroundColor: bgColor}}>
             <p style={{margin: 4}}>{message}</p>
         </div>
-    </>)
+    </>);
 }
+
+ResultMessage.propTypes = {
+    range: number,
+};

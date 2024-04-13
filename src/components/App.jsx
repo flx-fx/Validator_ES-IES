@@ -1,10 +1,11 @@
-import './App.css';
+import '../App.css';
 import {Tab, TabPanel, Tabs, TabsList} from "@mui/base";
-import ValidatorES from "./components/ValidatorES.jsx";
-import ValidatorIES from "./components/ValidatorIES.jsx";
+import ValidatorES from "./ValidatorES.jsx";
+import ValidatorIES from "./ValidatorIES.jsx";
 
-function App() {
-    return (<>
+export default function App() {
+    return (
+        <>
             <Tabs defaultValue={0}>
                 <TabsList className='TabsList'>
                     <Tab className='Tab' slotProps={{root: {className: 'first'}}}>Elastischer Stoß</Tab>
@@ -13,7 +14,6 @@ function App() {
                 <TabPanel><ValidatorES/></TabPanel>
                 <TabPanel><ValidatorIES/></TabPanel>
             </Tabs>
-        </>)
+        </>
+    );
 }
-
-export default App

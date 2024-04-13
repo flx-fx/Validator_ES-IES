@@ -5,7 +5,12 @@ import {useEffect, useState} from "react";
 import ResultMessage from "./ResultMessage.jsx";
 
 export default function ValidatorIES() {
-    const [values, setValues] = useState(Array(5).fill(''));
+    const [values, setValues] = useState(JSON.parse(localStorage.getItem('values-ies')) || Array(5).fill(''));
+
+    const [sum1, setSum1] = useState(NaN);
+    const [sum2, setSum2] = useState(NaN);
+
+    const range = 0.1;
 
     function handleOnChange(i, e) {
         let newValues = values.slice();
@@ -13,10 +18,8 @@ export default function ValidatorIES() {
         setValues(newValues);
     }
 
-    const [sum1, setSum1] = useState(0);
-    const [sum2, setSum2] = useState(0);
-
     useEffect(() => {
+        localStorage.setItem('values-ies', JSON.stringify(values));
         setSum1(parseFloat(values[0]) * parseFloat(values[2]) + parseFloat(values[1]) * parseFloat(values[3]));
         setSum2((parseFloat(values[0]) + parseFloat(values[1])) * parseFloat(values[4]));
     }, [values]);
@@ -50,15 +53,15 @@ export default function ValidatorIES() {
                     <Latex>$\frac m s$</Latex>
                 </div>
                 <div>
-                    <Latex>$u$ = </Latex>
+                    <Latex>$u{'\\phantom{,}'}$ = </Latex>
                     <input type="text" value={values[4]} onChange={e => handleOnChange(4, e)}/>
                     <Latex>$\frac m s$</Latex>
                 </div>
             </div>
-            <Latex>${values[0] ? values[0] : 'm_1'} \cdot {values[2] ? values[2] : 'v_1'} + {values[1] ? values[1] : 'm_2'} \cdot {values[3] ? values[3] : 'v_2'} =
-                \left( {values[0] ? values[0] : 'm_1'} + {values[1] ? values[1] : 'm_2'} \right)
-                \cdot {values[4] ? values[4] : 'u'}$</Latex>
+            <p style={{margin: 4}}>
+                {!isNaN(sum1) && !isNaN(sum2) ? <Latex>${`${sum1}`} {!(sum1 - sum2 < sum1 * range && sum2 - sum1 < sum1 * range) ? '\\neq' : '\\approx'} {`${sum2}`}$</Latex> : ''}
+            </p>
         </div>
-        <ResultMessage sum1={sum1} sum2={sum2}/>
+        <ResultMessage sum1={sum1} sum2={sum2} range={range}/>
     </>)
 }
