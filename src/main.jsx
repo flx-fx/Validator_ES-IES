@@ -14,6 +14,7 @@ const router = createBrowserRouter([
             {
                 path: "elastischer-stoss",
                 element: <ValidatorES/>,
+                index: true,
             },
             {
                 path: "inelastischer-stoss",
