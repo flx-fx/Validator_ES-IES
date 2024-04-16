@@ -5,6 +5,7 @@ import './index.css';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import ValidatorES from "./routes/ValidatorES.jsx";
 import ValidatorIES from "./routes/ValidatorIES.jsx";
+import Index from "./routes/index.jsx";
 
 const router = createBrowserRouter([
     {
@@ -12,9 +13,12 @@ const router = createBrowserRouter([
         element: <Root/>,
         children: [
             {
+                index: true,
+                element: <Index/>
+            },
+            {
                 path: "elastischer-stoss",
                 element: <ValidatorES/>,
-                index: true,
             },
             {
                 path: "inelastischer-stoss",
