@@ -1,12 +1,13 @@
 import PropTypes, {number} from "prop-types";
 
-export default function ResultMessage({ sum1, sum2, range }) {
+export default function ResultMessage({ sum1, sum2 }) {
 
     ResultMessage.propTypes = {
         sum1: PropTypes.number.isRequired,
         sum2: PropTypes.number.isRequired,
     };
 
+    let range = 0.1;
     let message;
     let color;
     let borderColor;
