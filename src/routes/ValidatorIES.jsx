@@ -10,11 +10,12 @@ export default function ValidatorIES() {
     const [sum1, setSum1] = useState(NaN);
     const [sum2, setSum2] = useState(NaN);
 
-    const range = 0.1;
+    const range = 0.15;
 
     function handleOnChange(i, e) {
         let newValues = values.slice();
-        newValues[i] = e.target.value.replace(',', '.').replace(/[^\d.]/g, '');
+        const newValue = e.target.value.replace(',', '.');
+        newValues[i] = newValue.match(/^-?(\d+)?\.?(\d+)?$/g) ? newValue : values[i];
         setValues(newValues);
     }
 

@@ -14,7 +14,8 @@ export default function ValidatorES() {
 
     function handleOnChange(i, e) {
         let newValues = values.slice();
-        newValues[i] = e.target.value.replace(',', '.').replace(/[^\d.]/g, '');
+        const newValue = e.target.value.replace(',', '.');
+        newValues[i] = newValue.match(/^-?(\d+)?\.?(\d+)?$/g) ? newValue : values[i];
         setValues(newValues);
     }
 
@@ -67,6 +68,6 @@ export default function ValidatorES() {
                 {!isNaN(sum1) && !isNaN(sum2) ? <Latex>${`${sum1}`} {!(sum1 - sum2 < sum1 * range && sum2 - sum1 < sum1 * range) ? '\\neq' : '\\approx'} {`${sum2}`}$</Latex> : ''}
             </p>
         </div>
-        <ResultMessage sum1={sum1} sum2={sum2}/>
+        <ResultMessage sum1={sum1} sum2={sum2} range={range}/>
     </>);
 }

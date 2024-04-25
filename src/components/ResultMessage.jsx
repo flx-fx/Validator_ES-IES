@@ -1,13 +1,7 @@
-import PropTypes, {number} from "prop-types";
+import {number} from "prop-types";
 
-export default function ResultMessage({ sum1, sum2 }) {
-
-    ResultMessage.propTypes = {
-        sum1: PropTypes.number.isRequired,
-        sum2: PropTypes.number.isRequired,
-    };
-
-    let range = 0.1;
+export default function ResultMessage({ sum1, sum2, range }) {
+    
     let message;
     let color;
     let borderColor;
@@ -38,5 +32,7 @@ export default function ResultMessage({ sum1, sum2 }) {
 }
 
 ResultMessage.propTypes = {
-    range: number,
+    sum1: number.isRequired,
+    sum2: number.isRequired,
+    range: number.isRequired,
 };
