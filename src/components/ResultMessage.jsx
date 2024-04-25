@@ -1,13 +1,13 @@
-import {number} from "prop-types";
+import {bool, number} from "prop-types";
 
-export default function ResultMessage({ sum1, sum2, range }) {
+export default function ResultMessage({ sum1, sum2, correct }) {
     
     let message;
     let color;
     let borderColor;
     let bgColor;
 
-    if (sum1 - sum2 < sum1 * range && sum2 - sum1 < sum1 * range) { //Hardcoded Values sind vielleicht sinnvoller
+    if (correct) {
         message = 'Deine Werte sind im richtigen Bereich!';
         color = '#2E7D32';
         borderColor = '#A5D6A7';
@@ -34,5 +34,5 @@ export default function ResultMessage({ sum1, sum2, range }) {
 ResultMessage.propTypes = {
     sum1: number.isRequired,
     sum2: number.isRequired,
-    range: number.isRequired,
+    correct: bool.isRequired,
 };

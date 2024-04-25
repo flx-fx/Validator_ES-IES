@@ -28,6 +28,10 @@ const router = createBrowserRouter([
     },
 ]);
 
+export function validate(sum1, sum2, range) {
+    return Math.abs(sum1 - sum2) <= Math.abs(sum1 * range);
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <RouterProvider router={router}/>

@@ -3,6 +3,7 @@ import 'katex/dist/katex.min.css';
 import Latex from "react-latex-next";
 import {useEffect, useState} from "react";
 import ResultMessage from "../components/ResultMessage.jsx";
+import {validate} from "../main.jsx";
 
 export default function ValidatorES() {
     const [values, setValues] = useState(JSON.parse(localStorage.getItem('values-es')) || Array(6).fill(''));
@@ -65,9 +66,9 @@ export default function ValidatorES() {
                 </div>
             </div>
             <p style={{margin: 4}}>
-                {!isNaN(sum1) && !isNaN(sum2) ? <Latex>${`${sum1}`} {!(sum1 - sum2 < sum1 * range && sum2 - sum1 < sum1 * range) ? '\\neq' : '\\approx'} {`${sum2}`}$</Latex> : ''}
+                {!isNaN(sum1) && !isNaN(sum2) ? <Latex>${`${sum1}`} {!validate(sum1, sum2, range) ? '\\neq' : '\\approx'} {`${sum2}`}$</Latex> : ''}
             </p>
         </div>
-        <ResultMessage sum1={sum1} sum2={sum2} range={range}/>
+        <ResultMessage sum1={sum1} sum2={sum2} correct={validate(sum1, sum2, range)}/>
     </>);
 }
